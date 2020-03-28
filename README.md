@@ -1,27 +1,28 @@
-build: 
+
+**build:** 
 docker build . -t jason/jenkins
 
-run: 
+**run:** 
 docker run --name jenkins -d -p 8080:8080 -v jenkins_home:/var/jenkins_home jason/jenkins
 
-stop: 
+**stop:** 
 docker stop jenkins
 
-remove container:
+**remove container:**
 docker rm jenkins
 
-remove image:
+**remove image:**
 docker rmi jason/jenkins:latest
 
-prune all images: 
+**prune all images:** 
 docker system prune -a
 
-connect to container:
+**connect to container:**
 docker exec -it jenkins /bin/bash
 
-logs:
+**logs:**
 docker logs --follow jenkins
 
-uri:
+**uri:**
 localhost:8080
 
