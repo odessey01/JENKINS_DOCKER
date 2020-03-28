@@ -1,0 +1,7 @@
+workflow-aggregator:2.6
+blueocean:1.18.1
+pipeline-maven:latest
+configuration-as-code:1.35
+job-dsl:1.74
+greenballs:1.15
+emotional-jenkins-plugin:1.2

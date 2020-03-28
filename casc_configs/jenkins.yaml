@@ -1,0 +1,40 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  securityRealm:
+    ldap:
+      configurations:
+        - groupMembershipStrategy:
+            fromUserRecord:
+              attributeName: "memberOf"
+          inhibitInferRootDN: false
+          rootDN: "unitrininc.unitrin.org"
+          server: "ldaps://kcsawsdcp002.unitrininc.unitrin.org:3268"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  maven:
+    installations:
+    - name: "Maven 3"
+      properties:
+      - installSource:
+          installers:
+            - maven:
+                id: "3.5.4"
+jobs:
+  - script: >
+      pipelineJob('pipeline') {
+          definition {
+              cpsScm {
+                  scriptPath 'Jenkinsfile'
+                  scm {
+                    git {
+                        remote { url 'ssh://git@stash.kemperi.com:7999/cld/aws-jenkins-configuration.git' }
+                        branch 'master'
+                        extensions {}
+                    }
+                  }
+              }
+          }
+      }
